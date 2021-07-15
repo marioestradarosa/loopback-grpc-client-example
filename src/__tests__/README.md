@@ -1,7 +1,15 @@
 # Tests
 
-The `interfaces` artifacts where generated from the root folder directory with the following command.
+It is important to run the gRPC sample server before running the tests.
+
+## Running the gPRC Test Server
 
 ```sh
-protoc --plugin=node_modules/ts-proto/protoc-gen-ts_proto --ts_proto_out=src/__tests__/fixtures/interfaces --ts_proto_opt=env=node --ts_proto_opt=outputEncodeMethods=false,outputJsonMethods=false,outputClientImpl=false   ./protos/helloworld.proto
+npm run docker:run:grpc-test-server
+```
+
+## Stopping the gPRC Test Server
+
+```sh
+npm run docker:stop:grpc-test-server
 ```

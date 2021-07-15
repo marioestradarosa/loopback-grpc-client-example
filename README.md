@@ -1,8 +1,8 @@
 # gRPC client example
 
-This application demonstrate the power of `service proxy` along with `connectors`
-within a loopback 4 application. In this case the connector used is the
-`loopback-connector-grpc`.
+This application demonstrates the power of `service proxy`
+within a loopback 4 application along with `loopback-connector-grpc` as
+connector.
 
 ## Installing
 After you clone it locally, you need to install the packages.
@@ -20,8 +20,8 @@ npm run docker:run:grpc-test-server
 ## Testing
 
 In order to run the local test try to run
+
 ```sh
-npm run pretest
 npm run test
 ```
 ## Starting the application
@@ -130,6 +130,8 @@ Add the following 3 items (host, port, remotingEnabled) in the configuration
 };
 ```
 
+For more options, refere to the [loopback-connector-grpc](https://github.com/loopbackio/loopback-connector-grpc) repository.
+
 ## Creating the `service proxy`
 
 From the command line run `lb4 service greeter` and choose the option
@@ -207,17 +209,17 @@ before and reference the `ts-proto` npm package as the plugin. We are telling
 `protocol buffer` file located in the root of our application.
 
 ```sh
-% protoc --plugin=node_modules/ts-proto/protoc-gen-ts_proto --ts_proto_out=src/interfaces --ts_proto_opt=env=node --ts_proto_opt=outputEncodeMethods=false,outputJsonMethods=false,outputClientImpl=false  ./protos/helloworld.proto
+protoc --plugin=node_modules/ts-proto/protoc-gen-ts_proto --ts_proto_out=src/interfaces --ts_proto_opt=env=node --ts_proto_opt=outputEncodeMethods=false,outputJsonMethods=false,outputClientImpl=false   ./protos/helloworld.proto
 ```
 
-The latter will create the file `src/interfaces/protos/helloworld.ts` with 3
+The previous command will create the file `src/interfaces/protos/helloworld.ts` with 3
 artifacts as follows:
 
 - `interface Greeter` is the interface we will use in our `service proxy` declaring the methods, parameters and responses from the remote gRPC server
 - `interface HelloRequest` is our request interface for the two methods exposed in the remote gRPC server
 - `interface HelloReply` is our response interface
 
-**Note:** in order work simpler when importing these interfaces, we will add an `index.ts` file in the `src/interfaces` with the following content:
+**Note:** in order to standardized access to this file content when importing these interfaces, we will add an `index.ts` file in the `src/interfaces` with the following content:
 
 ```ts
 export * from './protos/helloworld';
