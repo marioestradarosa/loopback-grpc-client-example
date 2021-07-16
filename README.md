@@ -129,8 +129,20 @@ Add the following 3 items (host, port, remotingEnabled) in the configuration
   remotingEnabled: true
 };
 ```
+### IMPORTANT: upgrading manually `loopback-connector-grpc`
+
+Currently there is a [pull request](https://github.com/loopbackio/loopback-next/pull/7624) in the loopback-next mono repo, but until
+this lands and gets published you need to do the following for now:
+
+```sh
+npm install loopback-connector-grpc@2.0.0 --save
+```
+
+This will replace the underlying connector to the latest.
+
 
 For more options, refere to the [loopback-connector-grpc](https://github.com/loopbackio/loopback-connector-grpc) repository.
+
 
 ## Creating the `service proxy`
 
